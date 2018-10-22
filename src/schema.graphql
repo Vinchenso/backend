@@ -1,7 +1,7 @@
 type Query {
-  hi: String
+  hi: String!
 }
 
 type Mutation {
-  hi: String
+ hi(): String!
 }

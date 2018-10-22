@@ -4,12 +4,10 @@ const createServer = require("./createServer.js");
 
 const server = createServer();
 
-const SESSION_SECRET = process.env.SESSION_SECRET;
-
 server.express.use(
   session({
     name: "qid",
-    secret: SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
