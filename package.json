@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon -e js,graphql -x node src/index.js",
     "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
-    "test": "jest",
+    "test": "NODE_ENV=testing jest --forceExit --runInBand --detectOpenHandles --watch",
     "deploy:prod": "prisma deploy --env-file prisma_prod.env",
     "deploy:dev": "prisma deploy --env-file prisma_dev.env",
     "lint": "eslint . --fix"
@@ -34,11 +34,15 @@
     ]
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "prettier": "^1.14.3"
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "regenerator-runtime": "^0.12.1"
   }
 }
