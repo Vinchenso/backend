@@ -14,3 +14,11 @@ enum AttendanceStatus {
   DECLINED
 }
 
+type Query {
+  allGuests: [Guest]
+}
+
+type Mutation {
+  createGuest( firstname: String!, lastname: String!, dietry_note: String, status: AttendanceStatus, email: String, cell: String
+  ): Guest!
+}
