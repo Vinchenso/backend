@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "variables.env" });
 
+const guest = require('./api/guest/guest.model.js')
+const user = require('./api/user/user.model.js')
+
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 const db = mongoose.connect(process.env.DATABASE);
 
@@ -8,35 +11,12 @@ mongoose.connection.on("error", err => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-// type User {
-//   id: ID! @unique
-//   name: String!
-//   email: String! @unique
-//   password: String!
-//   resetToken: String
-//   resetTokenExpiry: Float
+const models = {
+  guest,
+  user
+}
 
-// }
-
-// type Guest {
-//   id: ID! @unique
-//   firstname: String!
-//   lastname: String!
-//   dietry_note: String
-//   status: AttendanceStatus! @default(value: "INVITED")
-//   email: String
-//   cell: String
-// }
-
-// type Rsvp {
-//   id: ID! @unique
-//   guests: [Guest!]!
-// }
-
-// enum AttendanceStatus {
-//   INVITED,
-//   ACCEPTED,
-//   DECLINED
-// }
-
-module.exports = db;
+module.exports = {
+  db,
+  models
+}

@@ -1,0 +1,4 @@
+type Rsvp {
+  id: ID! @unique
+  guests: [Guest!]!
+}

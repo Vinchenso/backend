@@ -1,24 +1,11 @@
 const { GraphQLServer } = require("graphql-yoga");
-// const resolvers = require("./resolvers");
-const db = require("./db.js");
-
-const typeDefs = `
-  type Query {
-    hello(name: String): String!
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: (_, { name }) => `Hello ${name || "World"}`
-  }
-};
+const gqlConfig = require('./api')
+const { models } = require('./db.js');
 
 function createServer() {
   return new GraphQLServer({
-    typeDefs,
-    resolvers,
-    context: req => ({ ...req, db })
+    ...gqlConfig,
+    context: req => ({...req, models}),
   });
 }
 

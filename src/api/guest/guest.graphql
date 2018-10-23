@@ -1,0 +1,16 @@
+type Guest {
+  id: ID!
+  firstname: String!
+  lastname: String!
+  dietry_note: String
+  status: AttendanceStatus! @default(value: "INVITED")
+  email: String
+  cell: String
+}
+
+enum AttendanceStatus {
+  INVITED
+  ACCEPTED
+  DECLINED
+}
+
