@@ -1,11 +1,9 @@
 const { GraphQLServer } = require("graphql-yoga");
-const gqlConfig = require('./api')
-const { models } = require('./db.js');
+const gqlConfig = require("./api");
 
 function createServer() {
   return new GraphQLServer({
-    ...gqlConfig,
-    context: req => ({...req, models}),
+    ...gqlConfig
   });
 }
 

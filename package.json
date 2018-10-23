@@ -18,6 +18,7 @@
     "graphql-tools": "^4.0.2",
     "graphql-yoga": "1.16.2",
     "merge-graphql-schemas": "^1.5.7",
+    "mongodb": "^3.1.8",
     "mongoose": "^5.3.5",
     "nodemailer": "^4.6.8",
     "nodemon": "1.18.4"
@@ -29,7 +30,7 @@
   "babel": {
     "presets": [
       "env"
-    ]  
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -41,6 +42,10 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
     "jest": "^23.6.0",
+    "mongodb-memory-server": "^2.6.0",
     "prettier": "^1.14.3"
+  },
+"jest": {
+    "testEnvironment": "node"
   }
 }
