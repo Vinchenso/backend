@@ -17,8 +17,7 @@ const cleanDB = async done => {
 
 const connectToDB = async () => {
   const connection = await mongoose.connect(
-    global.__MONGO_URI__,
-    { useNewUrlParser: true }
+    'mongodb://localhost:27017/rsvp-test'
   );
   return connection;
 };

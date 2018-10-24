@@ -36,4 +36,5 @@ const guestSchema = new mongoose.Schema(
 );
 
 guestSchema.plugin(mongodbErrorHandler);
+
 module.exports = mongoose.model('guest', guestSchema);
