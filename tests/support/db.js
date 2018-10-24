@@ -10,13 +10,16 @@ const models = {
 };
 
 const cleanDB = async done => {
-  await models.user.remove({});
-  await models.guest.remove({});
+  await models.user.deleteOne({});
+  await models.guest.deleteOne({});
   done();
 };
 
 const connectToDB = async () => {
-  const connection = await mongoose.connect(global.__MONGO_URI__);
+  const connection = await mongoose.connect(
+    global.__MONGO_URI__,
+    { useNewUrlParser: true }
+  );
   return connection;
 };
 

@@ -1,15 +1,15 @@
-const db = require('../support/db.js');
-const guestResolver = require('../../src/api/guest/guest.resolvers.js');
+const db = require("../support/db.js");
+const guestResolver = require("../../src/api/guest/guest.resolvers.js");
 
-describe.only('User', () => {
+describe.only("User", () => {
   beforeAll(db.connectToDB);
   afterAll(db.disconnectDB);
   afterEach(db.cleanDB);
 
-  test('Query', async () => {
+  test("Query", async () => {
     const guest = await db.models.guest.create({
-      firstname: 'test',
-      lastname: 'teser'
+      firstname: "test",
+      lastname: "teser"
     });
     const result = await guestResolver.Query.allGuests(null, {}, db);
 
