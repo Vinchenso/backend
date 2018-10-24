@@ -1,40 +1,40 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const mongodbErrorHandler = require('mongoose-mongodb-errors');
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 const guestSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
-      required: true
+      required: true,
     },
     lastname: {
       type: String,
-      required: true
+      required: true,
     },
     dietry_note: {
-      type: String
+      type: String,
     },
     attendance_status: {
       type: String,
       required: true,
       enum: ['INVITED', 'ACCEPTED', 'DECLINED'],
-      default: 'INVITED'
+      default: 'INVITED',
     },
     email: {
       type: String,
-      unique: true,
+      unique: 'Two guests cannot share the same email - ({VALUE})',
       lowercase: true,
       trim: true,
-      validate: [validator.isEmail, 'Invalid Email Address']
+      validate: [validator.isEmail, 'Invalid Email Address'],
     },
     cell: {
-      type: String
-    }
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
-guestSchema.plugin(mongodbErrorHandler);
+guestSchema.plugin(beautifyUnique);
 
 module.exports = mongoose.model('guest', guestSchema);
