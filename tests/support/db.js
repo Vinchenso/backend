@@ -6,19 +6,17 @@ mongoose.Promise = global.Promise;
 
 const models = {
   user: User,
-  guest: Guest
+  guest: Guest,
 };
 
 const cleanDB = async done => {
-  await models.user.deleteOne({});
-  await models.guest.deleteOne({});
+  await models.user.remove();
+  await models.guest.remove();
   done();
 };
 
 const connectToDB = async () => {
-  const connection = await mongoose.connect(
-    'mongodb://localhost:27017/rsvp-test'
-  );
+  const connection = await mongoose.connect('mongodb://localhost:27017/rsvp-test');
   return connection;
 };
 
@@ -30,5 +28,5 @@ module.exports = {
   cleanDB,
   connectToDB,
   disconnectDB,
-  models
+  models,
 };
