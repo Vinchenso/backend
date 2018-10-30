@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../../src/api/user/user.model.js');
 const Guest = require('../../src/api/guest/guest.model');
+require('dotenv').config({ path: 'variables.env' });
 
 mongoose.Promise = global.Promise;
 
@@ -16,7 +17,7 @@ const cleanDB = async done => {
 };
 
 const connectToDB = async () => {
-  const connection = await mongoose.connect('mongodb://localhost:27017/rsvp-test');
+  const connection = await mongoose.connect(process.env.TEST_DATABASE);
   return connection;
 };
 

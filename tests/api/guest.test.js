@@ -14,7 +14,7 @@ describe.only('Guest', () => {
     });
     const result = await guestResolver.Query.allGuests(null, {}, db);
 
-    expect(`${result[0]._id}`).toBe(`${guest._id}`);
+    expect(`${result[0]._id}`).toEqual(`${guest._id}`);
   });
 
   test('resolves correct data count', async () => {
