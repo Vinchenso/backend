@@ -7,4 +7,4 @@ services:
 
 cache: yarn
 
-script: yarn test
+script: yarn test:ci
