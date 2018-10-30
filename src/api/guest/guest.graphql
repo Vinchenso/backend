@@ -6,6 +6,7 @@ type Guest {
   status: AttendanceStatus! @default(value: "INVITED")
   email: String
   cell: String
+  fullname: String
 }
 
 enum AttendanceStatus {
@@ -16,9 +17,11 @@ enum AttendanceStatus {
 
 type Query {
   allGuests: [Guest]
+  guestsByStatus: [Guest]
 }
 
 type Mutation {
   createGuest( firstname: String!, lastname: String!, dietry_note: String, status: AttendanceStatus, email: String, cell: String
   ): Guest!
+  updateGuestName(id: ID!, firstname: String!, lastname: String!): Guest 
 }

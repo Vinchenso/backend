@@ -55,4 +55,48 @@ describe.only('Guest', () => {
     expect(errors).toBeUndefined;
     expect(data.allGuests[0].firstname).toEqual('test');
   });
+
+  test('should get by status', async () => {
+    await db.models.guest.insertMany([
+      {
+        fullname: 'tester teser',
+        attendance_status: 'INVITED',
+      },
+      {
+        fullname: 'tester teser',
+        attendance_status: 'ACCEPTED',
+      },
+
+      {
+        fullname: 'teser3 jacks',
+        attendance_status: 'ACCEPTED',
+      },
+      {
+        fullname: 'teser4 parrow',
+        attendance_status: 'DECLINED',
+      },
+    ]);
+
+    const args = {
+      status: 'DECLINED',
+    };
+
+    const results = await guestResolver.Query.guestsByStatus(null, args, db);
+    expect(results.length).toEqual(1);
+  });
+
+  test('should update name', async () => {
+    const guest = await db.models.guest.create({
+      fullname: 'John Smit',
+    });
+
+    const args = {
+      id: guest.id,
+      firstname: 'Toe',
+      lastname: 'Man',
+    };
+
+    const results = await guestResolver.Mutation.updateGuestName(null, args, db);
+    expect(results.fullname).toEqual('Toe Man');
+  });
 });

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 const guestSchema = new mongoose.Schema(
   {
@@ -23,7 +22,6 @@ const guestSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: 'Two guests cannot share the same email - ({VALUE})',
       lowercase: true,
       trim: true,
       validate: [validator.isEmail, 'Invalid Email Address'],
@@ -32,9 +30,21 @@ const guestSchema = new mongoose.Schema(
       type: String,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
-guestSchema.plugin(beautifyUnique);
+guestSchema.virtual('fullname').get(function() {
+  return `${this.firstname} ${this.lastname}`;
+});
+
+guestSchema.virtual('fullname').set(function(name) {
+  const split = name.split(' ');
+  this.firstname = split[0];
+  this.lastname = split.slice(1);
+});
 
 module.exports = mongoose.model('guest', guestSchema);
