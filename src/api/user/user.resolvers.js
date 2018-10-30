@@ -1,9 +1,5 @@
-module.exports = { 
+module.exports = {
   Query: {
-    hello: (_,__,ctx) => { 
-      return "hey"  
-    }
-  }
-}
-
-
+    hello: (_, __, ctx) => 'hey',
+  },
+};
