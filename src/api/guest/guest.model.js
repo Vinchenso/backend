@@ -11,7 +11,7 @@ const guestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    dietry_note: {
+    notes: {
       type: String,
     },
     attendance_status: {

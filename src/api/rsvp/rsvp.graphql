@@ -2,3 +2,10 @@ type Rsvp {
   id: ID! @unique
   guests: [Guest!]!
 }
+
+
+type Mutation {
+  createRSVP(
+    email: String, name: ID!, cell: String, notes: String, attendance_status: String):
+    Guest!
+}

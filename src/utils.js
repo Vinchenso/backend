@@ -14,4 +14,15 @@ function hasPermission(user, permissionsNeeded) {
   }
 }
 
+const removeEmptyStrings = obj => {
+  const newObj = {};
+  Object.keys(obj).forEach(prop => {
+    if (obj[prop] !== '') {
+      newObj[prop] = obj[prop];
+    }
+  });
+  return newObj;
+};
+
 exports.hasPermission = hasPermission;
+exports.removeEmptyStrings = removeEmptyStrings;

@@ -3,7 +3,7 @@ type Guest {
   firstname: String!
   lastname: String!
   dietry_note: String
-  status: AttendanceStatus! @default(value: "INVITED")
+  attendance_status: AttendanceStatus! @default(value: "INVITED")
   email: String
   cell: String
   fullname: String
