@@ -5,7 +5,7 @@ module.exports = {
       return guests;
     },
     guestsByStatus: async (_, args, { models }) => {
-      const guests = await models.guest.find({ attendance_status: args.status });
+      const guests = await models.guest.find({ attendance_status: args.attendance_status });
       return guests;
     },
   },

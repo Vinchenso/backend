@@ -17,7 +17,7 @@ enum AttendanceStatus {
 
 type Query {
   allGuests: [Guest]
-  guestsByStatus: [Guest]
+  guestsByStatus(attendance_status: AttendanceStatus!): [Guest]
 }
 
 type Mutation {
