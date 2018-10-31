@@ -2,7 +2,7 @@ type Guest {
   id: ID!
   firstname: String!
   lastname: String!
-  dietry_note: String
+  notes: String
   attendance_status: AttendanceStatus! @default(value: "INVITED")
   email: String
   cell: String
@@ -21,7 +21,7 @@ type Query {
 }
 
 type Mutation {
-  createGuest( firstname: String!, lastname: String!, dietry_note: String, status: AttendanceStatus, email: String, cell: String
+  createGuest( firstname: String!, lastname: String!, note: String, status: AttendanceStatus, email: String, cell: String
   ): Guest!
   updateGuestName(id: ID!, firstname: String!, lastname: String!): Guest 
 }
