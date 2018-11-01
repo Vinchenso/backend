@@ -40,9 +40,8 @@ describe('Guest', () => {
             }
           }
         `;
-    const { data, errors } = await runQuery(query, input, db);
+    const { data } = await runQuery(query, input, db);
 
-    expect(errors).toBeUndefined;
     expect(data.allGuests[0].firstname).toEqual('test');
   });
 
@@ -68,7 +67,7 @@ describe('Guest', () => {
     ]);
 
     const args = {
-      status: 'DECLINED',
+      attendance_status: 'DECLINED',
     };
 
     const results = await guestResolver.Query.guestsByStatus(null, args, db);

@@ -7,6 +7,34 @@ describe('RSVP', () => {
   afterEach(db.cleanDB);
 
   describe('Mutations', () => {
+    test('#createRSVP - should update other guest statuses', async () => {
+      const guest1 = await db.models.guest.create({
+        fullname: 'John Smit',
+      });
+
+      const guest2 = await db.models.guest.create({
+        fullname: 'Paul second',
+      });
+
+      const guest3 = await db.models.guest.create({
+        fullname: 'Jack Door',
+      });
+
+      const args = {
+        email: '',
+        name: guest1._id,
+        cell: '',
+        notes: '',
+        attendance_status: 'Yes',
+        others: [{ id: guest2._id, attendance_status: 'Yes' }, { id: guest3._id, attendance_status: 'No' }],
+      };
+
+      const results = await rsvpResolver.Mutation.createRSVP(null, args, db);
+      console.log(results);
+
+      // expect(results).toEqual(1);
+    });
+
     test('#createRSVP - should update guest email', async () => {
       const guest = await db.models.guest.create({
         fullname: 'John Smit',
@@ -26,7 +54,7 @@ describe('RSVP', () => {
       expect(updatedGuest.email).toEqual('test@test.com');
       expect(updatedGuest.cell).toEqual('13456789');
       expect(updatedGuest.notes).toEqual('I eat everything');
-      expect(results._id).toEqual(guest._id);
+      expect(results[0]._id).toEqual(guest._id);
     });
 
     test('#createRSVP - should not update blank guest attributes', async () => {
@@ -50,7 +78,7 @@ describe('RSVP', () => {
       expect(updatedGuest.email).toEqual('dnt@gmail.com');
       expect(updatedGuest.cell).toEqual('13456789');
       expect(updatedGuest.notes).toBeFalsy();
-      expect(results._id).toEqual(guest._id);
+      expect(results[0]._id).toEqual(guest._id);
     });
   });
 });

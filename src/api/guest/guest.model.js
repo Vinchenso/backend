@@ -29,6 +29,11 @@ const guestSchema = new mongoose.Schema(
     cell: {
       type: String,
     },
+
+    submittedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'SubmitterGuest',
+    },
   },
   {
     timestamps: true,
