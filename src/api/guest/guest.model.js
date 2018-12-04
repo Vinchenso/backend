@@ -11,7 +11,10 @@ const guestSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    notes: {
+    dietary_note: {
+      type: String,
+    },
+    song_note: {
       type: String,
     },
     attendance_status: {
@@ -29,7 +32,9 @@ const guestSchema = new mongoose.Schema(
     cell: {
       type: String,
     },
-
+    correctSpelling: {
+      type: String,
+    },
     submittedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'SubmitterGuest',

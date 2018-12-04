@@ -16,17 +16,31 @@ module.exports = {
 
       if (args.others) {
         args.others.map(async other => {
-          if (other.attendance_status === 'Yes') {
+          if (other.attending === 'Yes') {
             other.attendance_status = 'ACCEPTED';
           }
-          if (other.attendance_status === 'No') {
+          if (other.attending === 'No') {
             other.attendance_status = 'DECLINED';
           }
 
           const otherModel = await models.guest
-            .findOneAndUpdate({ _id: other.id }, { attendance_status: other.attendance_status }, { new: true })
+            .findOneAndUpdate(
+              { _id: other.id },
+              { submittedBy: args.name, attendance_status: other.attendance_status },
+              { new: true }
+            )
             .exec();
           guests.push(otherModel);
+        });
+      }
+
+      if (args.spellCheck) {
+        args.spellCheck.map(async guest => {
+          if (guest.correctCheck === false) {
+            await models.guest
+              .findOneAndUpdate({ _id: guest.id }, { correctSpelling: guest.correctSpelling }, { new: true })
+              .exec();
+          }
         });
       }
 

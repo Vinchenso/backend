@@ -1,11 +1,25 @@
 type Mutation {
   createRSVP(
-    email: String, name: ID!, cell: String, notes: String,
-    attendance_status: String, others: [Other]):
-    [Guest!]
+    email: String, 
+    name: ID!, 
+    cell: String, 
+    attendance_status: String!, 
+    notes: String
+    dietary_note: String, 
+    song_note: String, 
+    others: [Other], 
+    spellCheck: [SpellCheck] ): [Guest!]
 }
 
 input Other{
   id: ID!
-  attendance_status: String 
+  attending: String!
+  fullname: String
+}
+
+input SpellCheck{
+  id: ID!
+  correctCheck: Boolean,
+  correctSpelling: String,
+  fullname: String
 }

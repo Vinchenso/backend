@@ -2,11 +2,12 @@ type Guest {
   id: ID!
   firstname: String!
   lastname: String!
-  notes: String
   attendance_status: AttendanceStatus! @default(value: "INVITED")
   email: String
   cell: String
   fullname: String
+  song_note: String
+  dietary_note: String
 }
 
 enum AttendanceStatus {
