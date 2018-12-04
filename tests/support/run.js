@@ -6,7 +6,7 @@ const runQuery = (query, variables = {}, ctx = {}) => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   return graphql(schema, query, null, { ...ctx }, variables);
 };
-
+//help
 module.exports = {
   runQuery,
 };
